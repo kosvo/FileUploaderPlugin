@@ -19,7 +19,7 @@
         <dependency id="NETStandard.Library" version="1.6.1" />
       </group>
       <group targetFramework="MonoAndroid10">
-        <dependency id="modernhttpclient" version="2.4.2" />
+        <dependency id="modernhttpclient-updated" version="3.4.3" />
       </group>
       <group targetFramework="Xamarin.iOS10">
       </group>
