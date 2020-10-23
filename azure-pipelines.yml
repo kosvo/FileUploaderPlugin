@@ -27,12 +27,20 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: 'src/*.sln'
+- task: MSBuild@1
+  displayName: 'Build solution'
+  inputs:
+    solution: "src/Plugin.FileUploader/*.csproj"
+    msbuildArguments: '/t:restore;build /p:PackageOutputPath=$(build.artifactstagingdirectory)'
+    clean: true
 
 - task: XamarinAndroid@1
   inputs:
     projectFile: 'src/*.sln'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+    msbuildArguments: '/t:restore;build /p:PackageOutputPath=$(build.artifactstagingdirectory)'
+  enabled: false
 
 - task: DotNetCoreCLI@2
   displayName: "dotnet pack"
@@ -42,6 +50,7 @@ steps:
     packagesToPack: 'src/*.sln'
     nobuild: true
     versioningScheme: 'off'
+  enabled: false
 
 # The last task is a nuget command, nuget push
 # This will push any .nupkg files to the 'PackagesFeed' artifact feed
