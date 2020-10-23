@@ -25,3 +25,27 @@ steps:
     projectFile: 'src/Plugin.FileUploader.Android/*Android.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
+
+- task: DotNetCoreCLI@2
+  displayName: "dotnet pack"
+  inputs:
+    command: 'pack'
+    arguments: '--configuration $(buildConfiguration)'
+    packagesToPack: 'src/Plugin.FileUploader.Android/*Android.csproj'
+    nobuild: true
+    versioningScheme: 'off'
+
+# The last task is a nuget command, nuget push
+# This will push any .nupkg files to the 'PackagesFeed' artifact feed
+# allowPackageConflicts allows us to build the same version and not throw an error when trying to push
+# instead it just ingores the latest package unless the version changes
+- task: NuGetCommand@2
+  displayName: 'nuget push'
+  inputs:
+    command: 'push'
+    feedsToUse: 'select'
+    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    nuGetFeedType: 'internal'
+    publishVstsFeed: 'PackagesFeed'
+    versioningScheme: 'off'
+    allowPackageConflicts: true
