@@ -2,17 +2,17 @@
 <package >
   <metadata minClientVersion="2.8.1">
     <id>Plugin.FileUploader</id>
-    <version>1.4.0</version>
+    <version>1.5.0</version>
     <title>File Uploader Plugin for Xamarin and Windows</title>
     <authors>Rendy Del Rosario</authors>
     <owners>crossgeeks</owners>
     <licenseUrl>https://raw.githubusercontent.com/CrossGeeks/FileUploaderPlugin/master/LICENSE</licenseUrl>
-    <projectUrl>https://github.com/CrossGeeks/FileUploaderPlugin</projectUrl>
-    <iconUrl>https://github.com/CrossGeeks/FileUploaderPlugin/blob/master/art/icon.png?raw=true</iconUrl>
+    <projectUrl>https://github.com/kosvo/FileUploaderPlugin</projectUrl>
+    <iconUrl>https://github.com/kosvo/FileUploaderPlugin/blob/master/art/icon.png?raw=true</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Upload files using multipart request across Xamarin.iOS, Xamarin.Android, UWP, Xamarin.Mac, tvOS and watchOS</description>
     <summary>Upload files using multipart request across Xamarin.iOS, Xamarin.Android, UWP, Xamarin.Mac, tvOS and watchOS</summary>
-    <copyright>Copyright 2017</copyright>
+    <copyright>Copyright 2020</copyright>
     <tags>iOS,Android,UWP,files,upload,multipart</tags>
      <dependencies>
       <group targetFramework="netstandard1.0">
