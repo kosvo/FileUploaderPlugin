@@ -27,6 +27,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     restoreSolution: 'src/*.sln'
+  enabled: false
 - task: MSBuild@1
   displayName: 'Build solution'
   inputs:
