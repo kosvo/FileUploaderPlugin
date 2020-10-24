@@ -33,7 +33,7 @@ steps:
   inputs:
     solution: "src/Plugin.FileUploader/*.csproj"
     msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.artifactstagingdirectory)\public /p:AssemblyFileVersion=$(Build.BuildNumber) '
-    clean: true
+    clean: false
 - task: XamarinAndroid@1
   inputs:
     projectFile: 'src/*.sln'
