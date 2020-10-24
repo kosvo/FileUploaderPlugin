@@ -31,7 +31,7 @@ steps:
 - task: MSBuild@1
   displayName: 'Build solution'
   inputs:
-    solution: "src/Plugin.FileUploader/*.csproj"
+    solution: "src/Plugin.FileUploader.Android/*.csproj"
     msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(Build.BuildNumber) '
     clean: false
 - task: XamarinAndroid@1
