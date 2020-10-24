@@ -32,7 +32,7 @@ steps:
   displayName: 'Build solution'
   inputs:
     solution: "src/Plugin.FileUploader/*.csproj"
-    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.artifactstagingdirectory) /p:AssemblyFileVersion=$(Build.BuildNumber) '
+    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.artifactstagingdirectory)/public /p:AssemblyFileVersion=$(Build.BuildNumber) '
     clean: true
 - task: XamarinAndroid@1
   inputs:
@@ -61,7 +61,7 @@ steps:
   inputs:
     command: 'push'
     feedsToUse: 'select'
-    packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(build.artifactstagingdirectory)/public/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'external'
     publishVstsFeed: 'PackagesFeed2'
     versioningScheme: 'off'
