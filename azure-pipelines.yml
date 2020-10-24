@@ -32,9 +32,9 @@ steps:
 - task: MSBuild@1
   displayName: 'Build solution'
   inputs:
-    solution: "src/Plugin.FileUploader.Shared/*.csproj"
+    solution: "src/*.sln"
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(version) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(version) '
+    msbuildArguments: '/t:restore;build /p:PackageVersion=$(version) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(version) '
     clean: false
   enabled: true
 - task: XamarinAndroid@1
@@ -42,7 +42,7 @@ steps:
     projectFile: 'src/Plugin.FileUploader.Android/*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(version) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(version) '
+    msbuildArguments: '/t:restore;build /p:PackageVersion=$(version) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(version) '
   enabled: false
 
 - task: DotNetCoreCLI@2
