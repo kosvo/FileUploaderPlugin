@@ -19,6 +19,7 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
+  version: '1.5.0'
   outputDirectory: '$(build.binariesDirectory)/$(buildConfiguration)'
 
 steps:
@@ -32,7 +33,7 @@ steps:
   displayName: 'Build solution'
   inputs:
     solution: "src/Plugin.FileUploader.Android/*.csproj"
-    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(Build.BuildNumber) '
+    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(version) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(version) '
     clean: false
   enabled: false
 - task: XamarinAndroid@1
@@ -40,7 +41,7 @@ steps:
     projectFile: 'src/Plugin.FileUploader.Android/*.csproj'
     outputDirectory: '$(outputDirectory)'
     configuration: '$(buildConfiguration)'
-    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(Build.BuildNumber) '
+    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(version) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(version) '
   enabled: true
 
 - task: DotNetCoreCLI@2
@@ -66,7 +67,7 @@ steps:
        targetFolder: $(Build.ArtifactStagingDirectory)
 - task: PublishBuildArtifacts@1
   inputs:
-    ArtifactName: $(BuildPlatform)
+    ArtifactName: '$(version)'
     PathtoPublish: $(Build.ArtifactStagingDirectory)
     publishLocation: Container
 - task: PublishPipelineArtifact@1
