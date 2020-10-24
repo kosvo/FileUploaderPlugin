@@ -70,15 +70,16 @@ steps:
     publishLocation: Container
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(build.artifactstagingdirectory)/public/*.nupkg'
+    targetPath: '$(build.artifactstagingdirectory)'
     artifact: 'drop'
     publishLocation: 'pipeline'
+  enabled: false
 - task: NuGetCommand@2
   displayName: 'nuget push'
   inputs:
     command: 'push'
     feedsToUse: 'select'
-    packagesToPush: '$(build.artifactstagingdirectory)/public/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
+    packagesToPush: '$(build.artifactstagingdirectory)/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
     nuGetFeedType: 'external'
     publishVstsFeed: 'PackagesFeed2'
     versioningScheme: 'off'
