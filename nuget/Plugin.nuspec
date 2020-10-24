@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <package >
   <metadata minClientVersion="2.8.1">
-    <id>Plugin.FileUploader</id>
+    <id>Kosvo.Plugin.FileUploader</id>
     <version>1.5.0</version>
     <title>File Uploader Plugin for Xamarin and Windows</title>
     <authors>Rendy Del Rosario</authors>
