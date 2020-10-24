@@ -15,7 +15,7 @@ Simple cross platform plugin for file multipart uploads.
 - Set custom boundary
 
 ### Setup
-* Available on NuGet: https://www.nuget.org/packages/Kosvo.Plugin.FileUploader [![NuGet](https://img.shields.io/nuget/v/Plugin.FileUploader.svg?label=NuGet)](https://www.nuget.org/packages/Kosvo.Plugin.FileUploader/)
+* Available on NuGet: https://www.nuget.org/packages/Kosvo.Plugin.FileUploader [![NuGet](https://img.shields.io/nuget/v/Kosvo.Plugin.FileUploader.svg?label=NuGet)](https://www.nuget.org/packages/Kosvo.Plugin.FileUploader/)
 * Install into your PCL project and Client projects.
 
 
