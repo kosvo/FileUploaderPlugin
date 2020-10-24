@@ -32,7 +32,7 @@ steps:
   displayName: 'Build solution'
   inputs:
     solution: "src/Plugin.FileUploader/*.csproj"
-    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.artifactstagingdirectory)\public /p:AssemblyFileVersion=$(Build.BuildNumber) '
+    msbuildArguments: '/t:restore;build;pack /p:PackageVersion=$(Build.BuildNumber) /p:PackageOutputPath=$(build.SourcesDirectory)\public /p:AssemblyFileVersion=$(Build.BuildNumber) '
     clean: false
 - task: XamarinAndroid@1
   inputs:
@@ -56,6 +56,18 @@ steps:
 # This will push any .nupkg files to the 'PackagesFeed' artifact feed
 # allowPackageConflicts allows us to build the same version and not throw an error when trying to push
 # instead it just ingores the latest package unless the version changes
+- task: CopyFiles@2
+  displayName: 'Copy APK to Staging Directory'
+  inputs:
+       sourceFolder: $(build.SourcesDirectory) 
+       contents: |
+         **/*.nupkg
+       targetFolder: $(Build.ArtifactStagingDirectory)
+- task: PublishBuildArtifacts@1
+  inputs:
+    ArtifactName: $(BuildPlatform)
+    PathtoPublish: $(Build.ArtifactStagingDirectory)
+    publishLocation: Container
 - task: PublishPipelineArtifact@1
   inputs:
     targetPath: '$(build.artifactstagingdirectory)/public/*.nupkg'
