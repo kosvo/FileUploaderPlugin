@@ -54,7 +54,13 @@ steps:
     nobuild: true
     versioningScheme: 'off'
   enabled: false
-
+- task: NuGetCommand@2
+  inputs:
+    command: 'pack'
+    packagesToPack: 'nuget/*.nuspec'
+    configuration: '$(buildConfiguration)'
+    packDestination: '$(build.SourcesDirectory)'
+    versioningScheme: 'off'
 # The last task is a nuget command, nuget push
 # This will push any .nupkg files to the 'PackagesFeed' artifact feed
 # allowPackageConflicts allows us to build the same version and not throw an error when trying to push
