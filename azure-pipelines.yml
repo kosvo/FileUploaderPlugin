@@ -62,7 +62,7 @@ steps:
     command: 'push'
     feedsToUse: 'select'
     packagesToPush: '$(Build.ArtifactStagingDirectory)/**/*.nupkg;!$(Build.ArtifactStagingDirectory)/**/*.symbols.nupkg'
-    nuGetFeedType: 'internal'
-    publishVstsFeed: 'PackagesFeed'
+    nuGetFeedType: 'external'
+    publishVstsFeed: 'PackagesFeed2'
     versioningScheme: 'off'
     allowPackageConflicts: true
