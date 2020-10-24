@@ -56,6 +56,11 @@ steps:
 # This will push any .nupkg files to the 'PackagesFeed' artifact feed
 # allowPackageConflicts allows us to build the same version and not throw an error when trying to push
 # instead it just ingores the latest package unless the version changes
+- task: PublishPipelineArtifact@1
+  inputs:
+    targetPath: '$(build.artifactstagingdirectory)/public/*.nupkg'
+    artifact: 'drop'
+    publishLocation: 'pipeline'
 - task: NuGetCommand@2
   displayName: 'nuget push'
   inputs:
