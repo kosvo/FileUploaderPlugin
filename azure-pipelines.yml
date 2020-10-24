@@ -59,7 +59,7 @@ steps:
     command: 'pack'
     packagesToPack: 'nuget/*.nuspec'
     configuration: '$(buildConfiguration)'
-    packDestination: '$(build.SourcesDirectory)'
+    packDestination: '$(build.SourcesDirectory)/n'
     versioningScheme: 'off'
 # The last task is a nuget command, nuget push
 # This will push any .nupkg files to the 'PackagesFeed' artifact feed
@@ -68,7 +68,7 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy APK to Staging Directory'
   inputs:
-       sourceFolder: $(build.SourcesDirectory) 
+       sourceFolder: $(build.SourcesDirectory)/n
        contents: |
          **/*.nupkg
        targetFolder: $(Build.ArtifactStagingDirectory)
@@ -92,4 +92,4 @@ steps:
     nuGetFeedType: 'external'
     publishVstsFeed: 'PackagesFeed2'
     versioningScheme: 'off'
-    allowPackageConflicts: true
+    allowPackageConflicts: false
